@@ -7,6 +7,11 @@ const dbConnect = require('./db/dbconnect');
 
 const app = express();
 
+// Middlewares
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json())
+
 const port = process.env.PORT;
 
 dbConnect();
