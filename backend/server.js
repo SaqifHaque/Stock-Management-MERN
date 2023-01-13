@@ -16,12 +16,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 
-//Error Middleware
-app.use(errorHandler);
-
 // Routes Middleware
 
-app.user('/api/users', userRoute);
+app.use('/api/users', userRoute);
+
+//Error Middleware
+app.use(errorHandler);
 
 const port = process.env.PORT;
 
