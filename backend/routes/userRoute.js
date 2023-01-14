@@ -1,5 +1,5 @@
 const express = require('express');
-const { registerUser, loginUser, logoutUser, getUser, loginStatus, updateUser } = require('../controllers/userController');
+const { registerUser, loginUser, logoutUser, getUser, loginStatus, updateUser, changePassword } = require('../controllers/userController');
 const authorization = require('../middleware/authMiddleware');
 const router = express.Router();
 
@@ -9,5 +9,6 @@ router.get("/logout", logoutUser);
 router.get("/get-user", authorization, getUser);
 router.get("/logged-in", loginStatus);
 router.patch("/update-user", authorization, updateUser)
+router.patch("/change-password", authorization, changePassword)
 
 module.exports = router;
