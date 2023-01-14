@@ -37,7 +37,7 @@ const registerUser = asyncHandler ( async (req, res) => {
     })
 
     // JWT Token creation
-    const token = generateToken();
+    const token = generateToken(user._id);
 
     // Send HTTP-Only-Cookie
     res.cookie("token", token,{
@@ -84,7 +84,7 @@ const loginUser = asyncHandler( async (req, res) => {
     const passwordIsCorrect = await bcrypt.compare(password, user.password);
 
       // JWT Token creation
-      const token = generateToken();
+      const token = generateToken(user._id);
 
       // Send HTTP-Only-Cookie
       res.cookie("token", token,{
@@ -121,7 +121,17 @@ const logoutUser = asyncHandler(async (req, res) => {
 })
 
 const getUser = asyncHandler(async (req, res) => {
-    res.send("")
+    const user = await User.findById(req.user._id);
+
+    if(user) {
+        const { _id, name, email, photo, phone, bio } = user;
+        res.status(200).json({
+            _id, name, email, photo, phone, bio
+        })
+    } else {
+        res.status(400);
+        throw new Error("User not found");
+    }
 })
 
 
