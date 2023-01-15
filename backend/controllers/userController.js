@@ -235,12 +235,25 @@ const forgetPassword = asyncHandler(async (req,res) => {
     //Reset Email
     const message = `
         <h2>Hello ${user.name}</h2>
-    `
+        <p>Please use the url to reset your password</p>
+        <p>This reset link is valid for only 5 minutes.</p>
 
+        <a href=${resetUrl} clicktracking=off>${resetUrl}</a>
+        <p>Regards.</p>
+        <p>Team Saqif</p>
+    `;
 
+    const subject = "Password reset request";
+    const send_to = user.email;
+    const sent_from = process.env.EMAIL_USER; 
 
-
-
+    try {
+        await sendEmail(subject, message, send_to, sent_from)
+        res.status(200).json({success: true, message: "Reset link to your email"})
+    } catch {
+        res.status(500);
+        throw new Error("Email not sent, please try again");
+    }
 })
 
 
