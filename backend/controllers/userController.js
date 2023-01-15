@@ -3,6 +3,7 @@ const User = require('../schema/userSchema');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const token = require('../schema/tokenSchema');
+const crypto = require("crypto");
 
 const generateToken = (id) => {
     return jwt.sign({id}, process.env.JWT_SECRET, {expiresIn: '1d'});
@@ -210,6 +211,36 @@ const forgetPassword = asyncHandler(async (req,res) => {
         res.status(404);
         throw new Error("User does not exist.")
     }
+
+    // Create reset token
+    let resetToken = crypto.randomBytes(32).toString("hex") + user._id;
+    
+    console.log(resetToken);
+
+    // Hashed token
+    const hashedToken = crypto.createHash("sha256").update(resetToken).digest("hex");
+
+    console.log(hashedToken);
+
+    await new Token ({
+        userId: user._id,
+        token: hashedToken,
+        createdAt: Date.now(),
+        expiresAt: Date.now() + 5 * (60 * 1000) // 5 mins
+    }).save();
+
+    //Reset URL
+    const resetUrl = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
+
+    //Reset Email
+    const message = `
+        <h2>Hello ${user.name}</h2>
+    `
+
+
+
+
+
 })
 
 
