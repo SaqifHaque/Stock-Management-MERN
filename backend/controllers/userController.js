@@ -264,5 +264,32 @@ const forgetPassword = asyncHandler(async (req,res) => {
     }
 })
 
+// Reset Password 
 
-module.exports = { registerUser, loginUser, logoutUser, getUser, loginStatus, updateUser, changePassword, forgetPassword };
+const resetPassword = asyncHandler(async(req, res) => {
+    const { password } = req.body;
+    const { resetToken } = req.params;
+
+    const hashedToken = crypto.createHash("sha256").update(resetToken).digest("hex");
+
+    // Find token in DB
+    const userToken = await token.findOne({
+        token: hashedToken,
+        expiresAt: {$gt: Date.now()}
+    })
+
+    if(!userToken) {
+        res.status(404);
+        throw new Error("Invalid or expired token");
+    }
+
+    const user  = await User.fineOne({_id: userToken.userId});
+    user.password = password;
+    user.save();
+
+    res.status(200).json({ message: "Password reset successful, Please login with new password"});
+
+})
+
+
+module.exports = { registerUser, loginUser, logoutUser, getUser, loginStatus, updateUser, changePassword, forgetPassword, resetPassword };
