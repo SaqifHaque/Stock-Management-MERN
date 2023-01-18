@@ -1,16 +1,12 @@
-const { default: test } = require('node:test');
 const nodemailer = require('nodemailer');
 
 const sendEmail= async (subject, message, send_to, sent_from, reply_to) => {
-
-    let testAccount = await nodemailer.createTestAccount();
-
     const transporter = nodemailer.createTransport({
         host: process.env.EMAIL_HOST,
         port: 587,
         auth: {
-            user: testAccount.user,
-            pass: testAccount.pass,
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS,
         },
         tls: {
             rejectUnauthorized: false
@@ -25,7 +21,7 @@ const sendEmail= async (subject, message, send_to, sent_from, reply_to) => {
         html: message,
     }
 
-    transporter.sendEmail(options, function(error, info){
+    transporter.sendMail(options, function(error, info){
         if(error) {
             console.log(error);
         }

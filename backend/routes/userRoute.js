@@ -10,6 +10,6 @@ router.get("/get-user", authorization, getUser);
 router.get("/logged-in", loginStatus);
 router.patch("/update-user", authorization, updateUser)
 router.patch("/change-password", authorization, changePassword)
-router.patch("/forget-password", forgetPassword);
+router.post("/forget-password", forgetPassword);
 
 module.exports = router;

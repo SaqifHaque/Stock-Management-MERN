@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const token = require('../schema/tokenSchema');
 const crypto = require("crypto");
+const sendEmail = require("../utils/sendEmail");
 
 const generateToken = (id) => {
     return jwt.sign({id}, process.env.JWT_SECRET, {expiresIn: '1d'});
@@ -213,8 +214,8 @@ const forgetPassword = asyncHandler(async (req,res) => {
     }
 
     // Delete token if exists
-    let token = await Token.findOne({userId: user._id});
-    if(token) {
+    let tokenExists = await token.findOne({userId: user._id});
+    if(tokenExists) {
         await token.deleteOne();
     }
 
@@ -228,7 +229,7 @@ const forgetPassword = asyncHandler(async (req,res) => {
 
     console.log(hashedToken);
 
-    await new Token ({
+    await new token ({
         userId: user._id,
         token: hashedToken,
         createdAt: Date.now(),
@@ -256,7 +257,8 @@ const forgetPassword = asyncHandler(async (req,res) => {
     try {
         await sendEmail(subject, message, send_to, sent_from)
         res.status(200).json({success: true, message: "Reset link to your email"})
-    } catch {
+    } catch (error) {
+        console.log(error);
         res.status(500);
         throw new Error("Email not sent, please try again");
     }
