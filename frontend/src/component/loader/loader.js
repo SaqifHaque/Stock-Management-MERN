@@ -1,12 +1,12 @@
 import React from 'react';
 
 
-const Footer = () => {
+const Loader = () => {
     return (
         <div >
-            Footer
+            loader
         </div>
     )
 }
 
-export default Footer;
+export default Loader;
