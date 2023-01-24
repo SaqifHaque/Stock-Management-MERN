@@ -12,16 +12,16 @@ const Login = () => {
                     <h2 className='text-4xl dark:text-white font-bold text-center'>Sign In</h2>
                     <div className='flex flex-col text-gray-400 py-2'>
                         <label>Email</label>
-                        <input className='rounded-lg bg-gray-700 mt-2 p-2 focus:border-blue=500 focus:bg-gray-800 focus:outline-none' type="text"/>
+                        <input className='form-control' type="text"/>
                     </div>
                     <div className='flex flex-col text-gray-400 py-2'>
                         <label>Password</label>
-                        <input className='rounded-lg bg-gray-700 mt-2 p-2 focus:border-blue=500 focus:bg-gray-800 focus:outline-none' type="password"/>
+                        <input className='form-control' type="password"/>
                     </div>
                     <div className='flex justify-between text-gray-400 py-2'>
                         <p>Forgot Password?</p>
                     </div>
-                    <button className='w-full my-5 py-2 bg-teal-500 shadow-lg shadow-teal-500/50 hover:shadow-teal-500/30 text-white font-semibold rounded-lg'>Sign In</button>
+                    <button className='btn-primary'>Sign In</button>
                 </form>
             </div>   
         </div>
