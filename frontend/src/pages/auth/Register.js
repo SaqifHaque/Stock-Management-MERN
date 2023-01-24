@@ -9,7 +9,7 @@ const Register = () => {
             </div>
             <div className='bg-gray-800 flex flex-col justify-center'>
                 <form className='max-w-[700px] w-full mx-auto bg-gray-900 p-8 px-8 rounded-lg'>
-                    <h2 className='text-4xl dark:text-white font-bold text-center'>Sign In</h2>
+                    <h2 className='text-4xl dark:text-white font-bold text-center'>Register</h2>
                     <div className='grid grid-cols-1 sm:grid-cols-2 w-full gap-x-2'>
                     <div className='flex flex-col text-gray-400 py-2'>
                         <label>First Name</label>
