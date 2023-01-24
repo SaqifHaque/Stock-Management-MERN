@@ -15,4 +15,8 @@
   .form-file-label {
     @apply flex justify-center w-full h-32 px-4 transition bg-gray-700 border-2 border-gray-800 border-dashed rounded-md appearance-none cursor-pointer hover:border-blue-500 focus:outline-none;
   }
+
+  .form-group {
+    @apply flex flex-col text-gray-400 py-2;
+  }
 }

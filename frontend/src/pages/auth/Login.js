@@ -10,11 +10,11 @@ const Login = () => {
             <div className='bg-gray-800 flex flex-col justify-center'>
                 <form className='max-w-[400px] w-full mx-auto bg-gray-900 p-8 px-8 rounded-lg'>
                     <h2 className='text-4xl dark:text-white font-bold text-center'>Sign In</h2>
-                    <div className='flex flex-col text-gray-400 py-2'>
+                    <div className='form-group'>
                         <label>Email</label>
                         <input className='form-control' type="text"/>
                     </div>
-                    <div className='flex flex-col text-gray-400 py-2'>
+                    <div className='form-group'>
                         <label>Password</label>
                         <input className='form-control' type="password"/>
                     </div>
