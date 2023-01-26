@@ -4,7 +4,7 @@ import React from 'react';
 const Footer = () => {
     return (
         <div >
-            Footer
+            All Rights Reserved.
         </div>
     )
 }
