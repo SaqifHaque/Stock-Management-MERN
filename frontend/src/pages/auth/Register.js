@@ -3,6 +3,9 @@ import loginImg from '../../assets/Stock.png';
 import { toast } from 'react-toastify';
 import { validateEmail } from '../../utils/emailValidation';
 import { registerUser } from '../../api/authAPI';
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from 'react-router-dom';
+import { SET_LOGIN, SET_NAME } from '../../redux/features/auth/authSlice';
 
 
 const dummy = {
@@ -17,6 +20,8 @@ const dummy = {
 }
 
 const Register = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState(dummy);
     const { firstName, lastName, email, password, phone, confirmPassword, bio, photo} = formData;
@@ -54,6 +59,9 @@ const Register = () => {
         try {
             const data = await registerUser(userData);
             console.log(data);
+            await dispatch(SET_LOGIN(true));
+            await dispatch(SET_NAME(data.name));
+            navigate("/dashboard")
             setIsLoading(false);
         } catch(error) {
             setIsLoading(false);
