@@ -11,10 +11,10 @@ const generateToken = (id) => {
 }
 
 const registerUser = asyncHandler ( async (req, res) => {
-    const {name, email, password} = req.body;
+    const {name, email, phone, password, bio, photo} = req.body;
 
     //Validation
-    if(!name || !email || !password){
+    if(!name || !email || !password || !phone){
         res.status(400);
         throw new Error("Please fill in all required fields")
     }
@@ -36,7 +36,10 @@ const registerUser = asyncHandler ( async (req, res) => {
     const user = await User.create({
         name,
         email,
-        password
+        phone,
+        password,
+        bio,
+        photo,
     })
 
     // JWT Token creation

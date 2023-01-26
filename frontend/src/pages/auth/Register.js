@@ -1,7 +1,70 @@
-import React from 'react';
+import { toNamespacedPath } from 'path';
+import React, { useState } from 'react';
 import loginImg from '../../assets/Stock.png';
+import { toast } from 'react-toastify';
+import { validateEmail } from '../../utils/emailValidation';
+import { registerUser } from '../../api/authAPI';
+
+
+const dummy = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    password: "",
+    confirmPassword: "",
+    bio: "",
+    photo: null,
+}
 
 const Register = () => {
+    const [isLoading, setIsLoading] = useState(false);
+    const [formData, setFormData] = useState(dummy);
+    const { firstName, lastName, email, password, phone, confirmPassword, bio, photo} = formData;
+
+    const handleInputChange = (e) => {
+        const {name, value} = e.target.value;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    const register = async  (e) => {
+        e.preventDefault();
+
+        if(!firstName || !lastName || !email || !password){
+            return toast.error("All fields are required");
+        }
+
+        if(password !== confirmPassword){
+            return toast.error("Passwords does not match")
+        }
+
+        if(password.legnth < 6){
+            return toast.error("Passwords must be upto 6 characters")
+        }
+
+        if(!validateEmail(email)){
+            return toast.error("Please enter a valid email")
+        }
+
+        const userData = {
+            name: firstName + " " + lastName,
+            email, password, phone, bio, photo
+        }
+
+        setIsLoading(true);
+        try {
+            const data = await registerUser(userData);
+            console.log(data);
+            setIsLoading(false);
+        } catch(error) {
+            setIsLoading(false);
+            console.log(error.message);
+            toast.error();
+        }
+
+        console.log(formData);
+    }
+
     return (
         <div className='grid grid-cols-1 sm:grid-cols-2 h-screen w-full'>
             <div className='hidden sm:block'>
@@ -13,34 +76,34 @@ const Register = () => {
                     <div className='grid grid-cols-1 sm:grid-cols-2 w-full gap-x-2'>
                     <div className='form-group'>
                         <label>First Name</label>
-                        <input className='form-control' type="text"/>
+                        <input className='form-control' type="text" name="firstName" value={firstName} required/>
                     </div>
                     <div className='form-group'>
                         <label>Last Name</label>
-                        <input className='form-control' type="text"/>
+                        <input className='form-control' type="text" name="lastName" value={lastName} required/>
                     </div>
                     </div>
                     <div className='form-group'>
                         <label>Email</label>
-                        <input className='form-control' type="text"/>
+                        <input className='form-control' type="text" name="email" value={email} required/>
                     </div>
                     <div className='form-group'>
                         <label>Phone</label>
-                        <input className='form-control' type="text" size='14' placeholder='+880-XXX-XXXX-XXX'/>
+                        <input className='form-control' type="text" size='14' placeholder='+880-XXX-XXXX-XXX' name="phone" value="phone" required/>
                     </div>
                     <div className='grid grid-cols-1 sm:grid-cols-2 w-full gap-x-2'>
                         <div className='form-group'>
                             <label>Password</label>
-                            <input className='form-control' type="password"/>
+                            <input className='form-control' type="password" name="password" value={password} required/>
                         </div>
                         <div className='form-group'>
                             <label>Confirm Password</label>
-                            <input className='form-control' type="password"/>
+                            <input className='form-control' type="password" name="confirmPassword" value={confirmPassword}/>
                         </div>
                     </div>
                     <div className='form-group'>
                         <label>Bio</label>
-                        <textarea className='form-control' type="password"/>
+                        <textarea className='form-control' type="password" name="bio" value={bio}/>
                     </div>
                     <div class="form-group">
                         <label
