@@ -19,7 +19,7 @@ export const registerUser = async (userData) => {
     }
 }
 
-export const login = async (userData) => {
+export const loginUser = async (userData) => {
     try {
         const response = await axios.post (`${BACKEND_URL}/api/users/login`, userData);
         if(response.statusText === "OK") {

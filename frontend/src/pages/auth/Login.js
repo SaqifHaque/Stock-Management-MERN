@@ -4,7 +4,7 @@ import { loginUser } from '../../api/authAPI';
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from 'react-router-dom';
 import { SET_LOGIN, SET_NAME } from '../../redux/features/auth/authSlice';
-import Loader from '../../component/loader/loader';
+import Loader from '../../component/loader/Loader';
 import { toast } from 'react-toastify';
 import { validateEmail } from '../../utils/emailValidation';
 
