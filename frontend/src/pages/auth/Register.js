@@ -1,4 +1,3 @@
-import { toNamespacedPath } from 'path';
 import React, { useState } from 'react';
 import loginImg from '../../assets/Stock.png';
 import { toast } from 'react-toastify';
@@ -76,34 +75,34 @@ const Register = () => {
                     <div className='grid grid-cols-1 sm:grid-cols-2 w-full gap-x-2'>
                     <div className='form-group'>
                         <label>First Name</label>
-                        <input className='form-control' type="text" name="firstName" value={firstName} required/>
+                        <input className='form-control' type="text" name="firstName" onChange={handleInputChange} value={firstName} required/>
                     </div>
                     <div className='form-group'>
                         <label>Last Name</label>
-                        <input className='form-control' type="text" name="lastName" value={lastName} required/>
+                        <input className='form-control' type="text" name="lastName" onChange={handleInputChange} value={lastName} required/>
                     </div>
                     </div>
                     <div className='form-group'>
                         <label>Email</label>
-                        <input className='form-control' type="text" name="email" value={email} required/>
+                        <input className='form-control' type="text" name="email" onChange={handleInputChange} value={email} required/>
                     </div>
                     <div className='form-group'>
                         <label>Phone</label>
-                        <input className='form-control' type="text" size='14' placeholder='+880-XXX-XXXX-XXX' name="phone" value="phone" required/>
+                        <input className='form-control' type="text" size='14' placeholder='+880-XXX-XXXX-XXX' name="phone" onChange={handleInputChange} value="phone" required/>
                     </div>
                     <div className='grid grid-cols-1 sm:grid-cols-2 w-full gap-x-2'>
                         <div className='form-group'>
                             <label>Password</label>
-                            <input className='form-control' type="password" name="password" value={password} required/>
+                            <input className='form-control' type="password" name="password" onChange={handleInputChange} value={password} required/>
                         </div>
                         <div className='form-group'>
                             <label>Confirm Password</label>
-                            <input className='form-control' type="password" name="confirmPassword" value={confirmPassword}/>
+                            <input className='form-control' type="password" name="confirmPassword" onChange={handleInputChange} value={confirmPassword}/>
                         </div>
                     </div>
                     <div className='form-group'>
                         <label>Bio</label>
-                        <textarea className='form-control' type="password" name="bio" value={bio}/>
+                        <textarea className='form-control' type="password" name="bio" onChange={handleInputChange} value={bio}/>
                     </div>
                     <div class="form-group">
                         <label
@@ -119,10 +118,10 @@ const Register = () => {
                                     <span class="text-blue-600 underline">browse</span>
                                 </span>
                             </span>
-                            <input type="file" name="file_upload" class="hidden"/>
+                            <input type="file" name="photo" class="hidden" value={photo} onChange={handleInputChange}/>
                         </label>
                     </div>
-                    <button className='btn-primary'>Register</button>
+                    <button className='btn-primary' onClick={register}>Register</button>
                 </form>
             </div>   
         </div>
