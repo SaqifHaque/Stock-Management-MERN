@@ -6,6 +6,7 @@ import { registerUser } from '../../api/authAPI';
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from 'react-router-dom';
 import { SET_LOGIN, SET_NAME } from '../../redux/features/auth/authSlice';
+import Loader from '../../component/loader/loader';
 
 
 const dummy = {
@@ -31,9 +32,7 @@ const Register = () => {
         setFormData({ ...formData, [name]: value });
     };
 
-    const register = async  (e) => {
-        e.preventDefault();
-
+    const register = async  () => {
         if(!firstName || !lastName || !email || !password){
             return toast.error("All fields are required");
         }
@@ -74,6 +73,7 @@ const Register = () => {
 
     return (
         <div className='grid grid-cols-1 sm:grid-cols-2 h-screen w-full'>
+            {isLoading && <Loader/>}
             <div className='hidden sm:block'>
                 <img className='w-full h-full object-cover' src={loginImg} alt=''/>
             </div>
