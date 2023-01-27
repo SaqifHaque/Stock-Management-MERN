@@ -20,6 +20,14 @@ const Sidebar = ({children}) => {
                 <div className="py-3 flex justify-end">
                     <HiMenuAlt3 size={26} className="cursor-pointer" onClick={() => setOpen(!open)}/>
                 </div>
+                <div className="mt-2 flex flex-col gap-4 relative">
+                    <div className={`${open ? "h-14 w-14" : "h-9 w-9"} relative h-14 w-14 rounded full`}>
+                        <div className='absolute rounded-full inset-0 border-teal-400 border-[3px] transition delay-1000 animate-pulse' />
+                        <div className='absolute rounded-full inset-[3px] border-teal-700 border-4 animate-[pulse_2s_ease-in-out_infinite]' /> 
+                        <div className={`absolute inset-[6px] rounded-full bg-[url('')] background-size: cover; z-20`} />
+                    </div>
+                    <h2 className={`whitespace-pre absolute left-20 top-3 font-medium duration-500 ${!open && "opacity-0 translate-x-28 overflow-hidden"}`}>Saqif Haque</h2>
+                </div>
                 <div className="mt-4 flex flex-col gap-4 relative">
                     {
                         menus?.map((menu, i) => (
