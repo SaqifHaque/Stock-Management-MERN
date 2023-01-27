@@ -15,13 +15,13 @@ const Sidebar = ({children}) => {
         { name: "Report Bug", link:"/", icon: VscReport},
     ]
     return (
-        <section className="flex gap-6">
+        <section className="flex">
             <div className={`${open ? "w-72" : "w-16"} duration-300 min-h-screen w-72 bg-gray-800 text-gray-100 px-4`}>
                 <div className="py-3 flex justify-end">
                     <HiMenuAlt3 size={26} className="cursor-pointer" onClick={() => setOpen(!open)}/>
                 </div>
                 <div className="mt-2 flex flex-col gap-4 relative">
-                    <div className={`${open ? "h-14 w-14" : "h-9 w-9"} relative h-14 w-14 rounded full`}>
+                    <div className={`${open ? "h-14 w-14" : "h-9 w-9"} relative rounded-full`}>
                         <div className='absolute rounded-full inset-0 border-teal-400 border-[3px] transition delay-1000 animate-pulse' />
                         <div className='absolute rounded-full inset-[3px] border-teal-700 border-4 animate-[pulse_2s_ease-in-out_infinite]' /> 
                         <div className={`absolute inset-[6px] rounded-full bg-[url('')] background-size: cover; z-20`} />
@@ -49,8 +49,7 @@ const Sidebar = ({children}) => {
                 </div>
             </div>
             <div className="">
-                {/* <main>{children}</main> */}
-                HomePage
+                <main>{children}</main>
             </div>
         </section>
     )
