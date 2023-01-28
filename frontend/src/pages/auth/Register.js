@@ -6,7 +6,7 @@ import { registerUser } from '../../api/authAPI';
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from 'react-router-dom';
 import { SET_LOGIN, SET_NAME } from '../../redux/features/auth/authSlice';
-import Loader from '../../component/loader/loader';
+import Loader from '../../component/loader/Loader';
 
 
 const dummy = {
@@ -96,7 +96,7 @@ const Register = () => {
                     </div>
                     <div className='form-group'>
                         <label>Phone</label>
-                        <input className='form-control' type="text" size='14' placeholder='+880-XXX-XXXX-XXX' name="phone" onChange={handleInputChange} value="phone" required/>
+                        <input className='form-control' type="text" size='14' placeholder='+880-XXX-XXXX-XXX' name="phone" onChange={handleInputChange} value={phone} required/>
                     </div>
                     <div className='grid grid-cols-1 sm:grid-cols-2 w-full gap-x-2'>
                         <div className='form-group'>
