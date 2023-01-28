@@ -1,5 +1,5 @@
 import React from 'react';
-import {MdAccountBalance, MdOutlineLogin} from 'react-icons/md';
+import {MdAccountBalance} from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import stockImg from '../../assets/Stock720.png';
 
