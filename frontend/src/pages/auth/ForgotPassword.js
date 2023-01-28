@@ -1,7 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 import loginImg from '../../assets/Stock.png';
+import {validateEmail} from '../../utils/emailValidation';
+import {forgotPassword} from '../../api/authAPI';
 
-const ForgotPassoword = () => {
+const ForgotPassword = () => {
+    const [email, setEmail] = useState("");
+
+    const forgot = async () => {
+        if(!email) {
+            return toast.error("Please enter an email");
+        }
+
+        if(!validateEmail(email)){
+            return toast.error("Please enter an valid email");
+        }
+
+        const userData = {
+            email
+        };
+
+        await forgotPassword(userData);
+        setEmail("");
+
+
+    }
+
     return (
         <div className='grid grid-cols-1 sm:grid-cols-2 h-screen w-full'>
             <div className='hidden sm:block'>
@@ -12,13 +36,13 @@ const ForgotPassoword = () => {
                     <h2 className='text-4xl dark:text-white font-bold text-center'>Verification</h2>
                     <div className='form-group'>
                         <label>Email</label>
-                        <input className='form-control' type="text"/>
+                        <input onChange={(e) => setEmail(e.target.value) }className='form-control' name="email" value={email} type="text" required/>
                     </div>
-                    <button className='btn-primary'>Verify</button>
+                    <button onClick={forgot} className='btn-primary'>Verify</button>
                 </form>
             </div>   
         </div>
     )
 }
 
-export default ForgotPassoword;
+export default ForgotPassword;

@@ -37,8 +37,21 @@ export const loginUser = async (userData) => {
 
 export const logoutUser = async () => {
     try {
-        await axios.post (`${BACKEND_URL}/api/users/logout`);
+        await axios.get(`${BACKEND_URL}/api/users/logout`);
 
+    } catch (error) {
+        const message = (
+            error.response && error.response.data && error.response.data.message
+        ) || error.message || error.toString();
+
+        toast.error(message);
+    }
+}
+
+export const forgotPassword = async (userData) => {
+    try {
+        const response = await axios.post(`${BACKEND_URL}/api/users/forgot-password`, userData);
+        toast.success(response.data.message);
     } catch (error) {
         const message = (
             error.response && error.response.data && error.response.data.message
