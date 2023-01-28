@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import {MdAccountBalance} from 'react-icons/md';
 import {VscSettingsGear} from 'react-icons/vsc';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logoutUser } from '../../api/authAPI';
-import { SET_LOGIN } from '../../redux/features/auth/authSlice';
+import { SET_LOGIN, selectName, selectEmail } from '../../redux/features/auth/authSlice';
 
 const Header = () => {
     const [open, setOpen] = useState(true);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const name = useSelector(selectName)
 
     const logout = async () => {
         await logoutUser();
@@ -29,8 +30,8 @@ const Header = () => {
                 <div className='absolute flex items-center right-20 top-12'>
                     <div className={`duration-500 ${!open && "opacity-0 overflow-hidden"} z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600 mt-`}>
                     <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
-                        <div>Saqif Hoque</div>
-                            <div className="font-medium truncate">saqif@gmail.com</div>
+                        <div>{name}</div>
+                            <div className="font-medium truncate">{selectEmail}</div>
                         </div>
                         <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
                             <li>
