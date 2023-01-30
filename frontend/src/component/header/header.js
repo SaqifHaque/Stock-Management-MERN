@@ -24,7 +24,7 @@ const Header = () => {
                 <MdAccountBalance/>
                     StockM
                 </div>
-                <div className="items-center mr-5 mt-3 text-white cursor-pointer" onClick={() => setOpen(!open)}>
+                <div className="mx-auto items-center mr-5 mt-3 text-white cursor-pointer" onClick={() => setOpen(!open)}>
                     <VscSettingsGear size="20"/>
                 </div>
                 <div className='absolute flex items-center right-4 top-12'>
