@@ -15,7 +15,7 @@ const Sidebar = ({children}) => {
         { name: "Report Bug", link:"/", icon: VscReport},
     ]
     return (
-            <div className={`${open ? "w-72" : "w-16"} duration-300 min-h-screen bg-gray-800 text-gray-100 px-4`}>
+            <div className={`${open ? "w-72" : "w-16"} duration-300 min-h-screen bg-gray-900 text-gray-100 px-4`}>
                 <div className="py-3 flex justify-end">
                     <HiMenuAlt3 size={26} className="cursor-pointer" onClick={() => setOpen(!open)}/>
                 </div>

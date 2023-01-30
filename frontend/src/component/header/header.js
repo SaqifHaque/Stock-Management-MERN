@@ -7,7 +7,7 @@ import { logoutUser } from '../../api/authAPI';
 import { SET_LOGIN, selectName, selectEmail } from '../../redux/features/auth/authSlice';
 
 const Header = () => {
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const name = useSelector(selectName)
@@ -18,16 +18,16 @@ const Header = () => {
         navigate('/login');
     }
     return (
-        <div className="shadow-md w-full fixed top-0 mx-auto">
-            <div className="md:flex bg-gray-800 py-4 h-12 relative">
-                <div className="absolute font-bold text-2xl cursor-pointer flex items-center font-[Poppins] left-3 text-gray-100">
+        <div className="shadow-md w-full container bg-gray-900 h-12">
+            <div className="md:flex flex flex-wrap relative">
+                <div className="absolute font-bold text-2xl cursor-pointer flex items-center mt-2 font-[Poppins] left-3 text-gray-100">
                 <MdAccountBalance/>
                     StockM
                 </div>
-                <div className="absolute flex-initial items-center right-20 text-white cursor-pointer" onClick={() => setOpen(!open)}>
+                <div className="items-center mr-5 mt-3 text-white cursor-pointer" onClick={() => setOpen(!open)}>
                     <VscSettingsGear size="20"/>
                 </div>
-                <div className='absolute flex items-center right-20 top-12'>
+                <div className='absolute flex items-center right-4 top-12'>
                     <div className={`duration-500 ${!open && "opacity-0 overflow-hidden"} z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600 mt-`}>
                     <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
                         <div>{name}</div>
