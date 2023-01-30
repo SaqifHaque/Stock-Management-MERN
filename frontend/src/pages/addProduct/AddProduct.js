@@ -61,7 +61,7 @@ const AddProduct = () => {
     }
 
   return (
-    <div className='h-screen w-full'>
+    <div className='h-auto w-full'>
         {isLoading && <Loader/>}
             <div className='bg-gray-800 flex flex-col justify-center'>
                 <ProductForm

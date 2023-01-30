@@ -18,11 +18,11 @@ const Header = () => {
         navigate('/login');
     }
     return (
-        <div className="shadow-md w-full container bg-gray-900 h-12">
-            <div className="md:flex flex flex-wrap relative">
-                <div className="absolute font-bold text-2xl cursor-pointer flex items-center mt-2 font-[Poppins] left-3 text-gray-100">
+        <div className="shadow-md bg-gray-900 h-12">
+            <div className="flex flex-wrap relative">
+                <div className="absolute font-bold text-2xl cursor-pointer flex items-center mt-2 left-3 text-gray-100">
                 <MdAccountBalance/>
-                    StockM
+                <span class="ml-2 text-xl">StockM</span>
                 </div>
                 <div className="mx-auto items-center mr-5 mt-3 text-white cursor-pointer" onClick={() => setOpen(!open)}>
                     <VscSettingsGear size="20"/>
