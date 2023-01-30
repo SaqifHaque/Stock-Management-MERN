@@ -7,7 +7,7 @@ import {VscReport} from 'react-icons/vsc';
 import { Link } from 'react-router-dom';
 
 const Sidebar = ({children}) => {
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     const menus = [
         { name: "Dashboard", link:"/", icon: RxDashboard},
         { name: "Add Product", link:"/", icon: MdLibraryAdd},
@@ -15,8 +15,7 @@ const Sidebar = ({children}) => {
         { name: "Report Bug", link:"/", icon: VscReport},
     ]
     return (
-        <section className='flex'>
-            <div className={`${open ? "w-72" : "w-16"} duration-300 min-h-screen w-72 bg-gray-800 text-gray-100 px-4`}>
+            <div className={`${open ? "w-72" : "w-16"} duration-300 min-h-screen bg-gray-800 text-gray-100 px-4`}>
                 <div className="py-3 flex justify-end">
                     <HiMenuAlt3 size={26} className="cursor-pointer" onClick={() => setOpen(!open)}/>
                 </div>
@@ -48,10 +47,6 @@ const Sidebar = ({children}) => {
                     }
                 </div>
             </div>
-            <div className="">
-                <main>{children}</main>
-            </div>
-        </section>
     )
 }
 
