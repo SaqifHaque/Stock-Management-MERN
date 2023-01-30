@@ -2,6 +2,7 @@ import React from 'react';
 import {MdAccountBalance} from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import stockImg from '../../assets/Stock720.png';
+import Footer from '../../component/footer/Footer';
 import { ShowOnLogin, ShowOnLogout } from '../../utils/hiddenLink';
 
 const Home = () => {
@@ -55,6 +56,7 @@ const Home = () => {
               <img className="object-cover object-center rounded" alt="hero" src={stockImg}/>
             </div>
           </div>
+            <Footer/>
         </section>
         </>
     )
