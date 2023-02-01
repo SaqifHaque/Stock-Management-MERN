@@ -28,7 +28,7 @@ const Home = () => {
                 <MdAccountBalance size="24"/>
                 <span className="ml-3 text-xl">StockM</span>
                 </a>
-                <div class="md:ml-auto flex flex-wrap items-center text-base justify-center gap-2">
+                <div className="md:ml-auto flex flex-wrap items-center text-base justify-center gap-2">
                   <ShowOnLogout>
                     <button onClick={onLoginClick} className="inline-flex items-center bg-teal-500 border-0 py-1 px-3 focus:outline-none hover:bg-teal-600 rounded text-base mt-4 md:mt-0">Login</button>
                     <button onClick={onRegisterClick} className="inline-flex items-center bg-teal-500 border-0 py-1 px-3 focus:outline-none hover:bg-teal-600 rounded text-base mt-4 md:mt-0">Register</button>
