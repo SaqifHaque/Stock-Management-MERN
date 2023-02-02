@@ -11,6 +11,7 @@ const Header = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const name = useSelector(selectName)
+    const email = useSelector(selectEmail);
 
     const logout = async () => {
         await logoutUser();
@@ -31,7 +32,7 @@ const Header = () => {
                     <div className={`duration-500 ${!open && "opacity-0 overflow-hidden"} z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600 mt-`}>
                     <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
                         <div>{name}</div>
-                            <div className="font-medium truncate">{selectEmail}</div>
+                            <div className="font-medium truncate">{email}</div>
                         </div>
                         <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
                             <li>
