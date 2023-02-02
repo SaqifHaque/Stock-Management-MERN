@@ -27,6 +27,22 @@ export const createProduct = createAsyncThunk(
     }
 )
 
+export const getProducts = createAsyncThunk(
+    "products/getAll",
+    async (_, thunkAPI) => {
+        try {
+            return await productAPI.getProducts();
+        } catch(error) {
+            const message = (
+                error.response && error.response.data && error.response.data.message
+            ) || error.message || error.toString();
+
+            console.log(message);
+            return thunkAPI.rejectWithValue(message);
+        }   
+    }
+)
+
 const authSlice  = createSlice({
     name: "auth",
     initialState,
@@ -42,11 +58,28 @@ const authSlice  = createSlice({
         builder.addCase(createProduct.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
+            state.isError=false;
+            console.log(action.payload);
+            state.products = action.payload;
+        });
+        builder.addCase(createProduct.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = false;
+            state.message = action.payload;
+            toast.error(action.payload);
+        });
+        builder.addCase(getProducts.pending, (state) => {
+            state.isLoading = true;
+        });
+        builder.addCase(getProducts.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.isError=false;
             console.log(action.payload);
             state.products.push(action.payload);
             toast.success("Product added successfully");
         });
-        builder.addCase(createProduct.rejected, (state, action) => {
+        builder.addCase(getProducts.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = false;
             state.message = action.payload;
