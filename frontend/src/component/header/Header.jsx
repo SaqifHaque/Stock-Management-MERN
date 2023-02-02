@@ -22,7 +22,7 @@ const Header = () => {
             <div className="flex flex-wrap relative">
                 <div className="absolute font-medium cursor-pointer flex items-center mt-2 left-2 text-gray-100">
                 <MdAccountBalance size="25"/>
-                <span class="ml-2 text-xl">StockM</span>
+                <span className="ml-2 text-xl">StockM</span>
                 </div>
                 <div className="mx-auto items-center mr-5 mt-3 text-white cursor-pointer" onClick={() => setOpen(!open)}>
                     <VscSettingsGear size="20"/>

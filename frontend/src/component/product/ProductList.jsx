@@ -1,7 +1,13 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {VscEye, VscEdit, VscTrash}from "react-icons/vsc";
+import { useDispatch, useSelector } from 'react-redux';
+import { FILTER_PRODUCTS, selectFilteredProducts } from '../../redux/features/product/filterSlice';
+import Search from '../search/Search';
 
 const ProductList = ({products, isLoading}) => {
+    const dispatch = useDispatch();
+    const [search, setSearch] = useState("");
+    const filteredProducts = useSelector(selectFilteredProducts);
 
     const shortenText = (text, n) => {
         if(text.length) {
@@ -11,10 +17,18 @@ const ProductList = ({products, isLoading}) => {
         return text;
     }
 
+    useEffect(() => {
+      dispatch(FILTER_PRODUCTS({products, search}))
+    }, [products, search, dispatch])
+    
+
 
   return (
     <div className='bg-gray-800 text-gray-400'>
         <h1>Invetory Items</h1>
+        <span>
+            {/* <Search value={search} onChange={(e) => setSearch(e.target.value)}/> */}
+        </span>
         {!isLoading && products.length === 0 ? (
             <p>-- No Product found, please add a product ...</p>
         ) : (<span>Hello</span>)}
@@ -32,7 +46,7 @@ const ProductList = ({products, isLoading}) => {
             </thead>
             <tbody>
                 {
-                    products.map((product, index) => {
+                    filteredProducts.map((product, index) => {
                         const { _id, name, category, price, quantity } = product;
                         return (
                             <tr key={_id}>

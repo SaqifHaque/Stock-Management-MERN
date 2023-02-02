@@ -4,6 +4,7 @@ import loginImg from '../../assets/Stock.png';
 import { resetPassword } from '../../api/authAPI';
 import { useParams } from 'react-router-dom';
 
+
 const dummy = {
     password: "",
     confirmPassword: ""
