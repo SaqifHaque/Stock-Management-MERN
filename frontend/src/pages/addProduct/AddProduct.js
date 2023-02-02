@@ -3,7 +3,7 @@ import { selectIsLoading } from '../../redux/features/product/productSlice';
 import { useSelector } from 'react-redux';
 import { useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
-import ProductForm from '../../component/productForm/ProductForm';
+import ProductForm from '../../component/product/ProductForm';
 import { createProduct } from '../../redux/features/product/productSlice';
 import Loader from '../../component/loader/Loader';
 

@@ -96,4 +96,4 @@ ProductForm.modules = {
     "align",
   ];
 
-export default ProductForm
+export default ProductForm;
