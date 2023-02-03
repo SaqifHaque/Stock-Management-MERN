@@ -13,6 +13,7 @@ const productRoute = require('./routes/productRoute');
 const contactRoute = require('./routes/contactRoute');
 
 const errorHandler = require('./middleware/errorMiddleware');
+const path = require("path");
 
 const app = express();
 
@@ -25,6 +26,8 @@ app.use(cors({
     origin: ["http://localhost:3000"],
     credentials: true,
 }))
+
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Routes Middleware
 

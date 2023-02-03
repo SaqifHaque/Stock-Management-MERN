@@ -1,5 +1,7 @@
 const asyncHandler = require('express-async-handler');
 const Product = require("../schema/productSchema");
+const { fileSizeFormatter } = require('../utils/fileUpload');
+const cloudinary = require('cloudinary').v2;
 
 const createProduct = asyncHandler (async (req, res) => {
     const { name, sku, category, quantity, price, description  } = req.body;
@@ -11,7 +13,24 @@ const createProduct = asyncHandler (async (req, res) => {
     }
 
     // Image Upload
+    let fileData = {};
+    if(req.file) {
+        // save Image to cloudinary
+        let uploadFile;
+        try{
+            uploadedFile = await cloudinary.uploader.upload(req.file.path, {folder: "StockM", resource_type: "image"})
+        } catch {
+            res.status(500);
+            throw new Error("Image could not be uploaded")
+        }
 
+        fileData = {
+            fileName: req.file.originalname,
+            filePath: uploadedFile.secure_url,
+            fileType: req.file.mimetype,
+            fileSize: fileSizeFormatter(req.file.size)
+        }
+    }
     // Create product
     const product = await Product.create({
         user: req.user.id,
@@ -20,7 +39,8 @@ const createProduct = asyncHandler (async (req, res) => {
         category,
         quantity,
         price,
-        description
+        description,
+        image: fileData
     })
 
     res.status(201).json(product);
