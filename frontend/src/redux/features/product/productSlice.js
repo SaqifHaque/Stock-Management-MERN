@@ -60,7 +60,8 @@ const authSlice  = createSlice({
             state.isSuccess = true;
             state.isError=false;
             console.log(action.payload);
-            state.products = action.payload;
+            state.products.push(action.payload);
+            toast.success("Product added successfully");
         });
         builder.addCase(createProduct.rejected, (state, action) => {
             state.isLoading = false;
@@ -76,8 +77,7 @@ const authSlice  = createSlice({
             state.isSuccess = true;
             state.isError=false;
             console.log(action.payload);
-            state.products.push(action.payload);
-            toast.success("Product added successfully");
+            state.products = action.payload;
         });
         builder.addCase(getProducts.rejected, (state, action) => {
             state.isLoading = false;

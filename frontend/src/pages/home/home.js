@@ -17,7 +17,7 @@ const Home = () => {
     }
 
     const onDashboardClick = () => {
-      navigate('/');
+      navigate('/dashboard');
     }
 
     return (
@@ -34,7 +34,7 @@ const Home = () => {
                     <button onClick={onRegisterClick} className="inline-flex items-center bg-teal-500 border-0 py-1 px-3 focus:outline-none hover:bg-teal-600 rounded text-base mt-4 md:mt-0">Register</button>
                   </ShowOnLogout>
                   <ShowOnLogin>
-                    <button onClick={onDashboardClick} className="inline-flex items-center bg-teal-500 border-0 py-1 px-3 focus:outline-none hover:bg-teal-600 rounded text-base mt-4 md:mt-0">Register</button>
+                    <button onClick={onDashboardClick} className="inline-flex items-center bg-teal-500 border-0 py-1 px-3 focus:outline-none hover:bg-teal-600 rounded text-base mt-4 md:mt-0">Dashboard</button>
                   </ShowOnLogin>
                 </div>
             </div>
