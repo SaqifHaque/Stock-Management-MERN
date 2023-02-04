@@ -23,8 +23,8 @@ const ProductStats = ({products}) => {
     <div className="w-11/12">
         <span className="text-4xl m-3 text-gray-300">Inventory Stats</span>
         <div className="flex flex-row text-gray-100 font-bold text-lg gap-4 p-4">
-            <div className='w-1/4 h-auto bg-teal-400 rounded-lg'>
-                <div className="flex flex-row m-2">
+            <div className='w-1/5 h-auto bg-teal-400 rounded-lg'>
+                <div className="flex flex-row m-2 items-center gap-x-5">
                     <MdOutlineInventory2 size="60"/>
                     <div className="flex flex-col">
                         <span className="mx-3">Total Products</span>
@@ -32,24 +32,24 @@ const ProductStats = ({products}) => {
                     </div>
                 </div>
             </div>
-            <div className='w-1/4 h-auto bg-teal-400 rounded-lg'>
-                <div className="flex flex-row m-2"><AiOutlineDollarCircle size="60"/>
+            <div className='w-1/5 h-auto bg-teal-400 rounded-lg'>
+                <div className="flex flex-row m-2 items-center gap-x-5"><AiOutlineDollarCircle size="60"/>
                     <div className="flex flex-col">
                         <span className="mx-3">Store Value</span>
-                        <span className="flex justify-center items-center">${totalStoreValue}</span>
+                        <span className="flex justify-center items-center">${(totalStoreValue.toLocaleString('en-US'))}</span>
                     </div>
                 </div>
             </div>
-            <div className='w-1/4 h-auto bg-teal-400 rounded-lg'>
-                <div className="flex flex-row m-2"><BsCartX size="60"/>
+            <div className='w-1/5 h-auto bg-teal-400 rounded-lg'>
+                <div className="flex flex-row m-2 items-center gap-x-5"><BsCartX size="60"/>
                     <div className="flex flex-col">
                         <span className="mx-3">Out of Stock</span>
                         <span className="flex justify-center items-center">{outOfStock}</span>
                     </div>
                 </div>
             </div>
-            <div className='w-1/4 h-auto bg-teal-400 rounded-lg'>
-                <div className="flex flex-row m-2"><BiCategoryAlt size="60"/>
+            <div className='w-1/5 h-auto bg-teal-400 rounded-lg'>
+                <div className="flex flex-row m-2 items-center gap-x-5"><BiCategoryAlt size="60"/>
                     <div className="flex flex-col">
                         <span className="mx-3">All Categories</span>
                         <span className="flex justify-center items-center">{categories.length}</span>

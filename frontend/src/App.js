@@ -4,7 +4,6 @@ import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import ForgotPassoword from './pages/auth/ForgotPassword';
 import ResetPassword from './pages/auth/ResetPassword';
-import Sidebar from './component/sidebar/Sidebar';
 import Layout from './component/layout/Layout';
 import Dashboard from './component/dashboard/Dashboard';
 import axios from 'axios';
