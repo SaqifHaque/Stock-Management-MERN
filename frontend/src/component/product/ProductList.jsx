@@ -24,15 +24,12 @@ const ProductList = ({products, isLoading}) => {
 
 
   return (
-    <div className='bg-gray-800 text-gray-400'>
-        <h1>Invetory Items</h1>
-        <span>
-            {/* <Search value={search} onChange={(e) => setSearch(e.target.value)}/> */}
+    <div className='bg-gray-800 text-gray-300'>
+        <span className="float-left text-4xl m-3">Invetory Items</span>
+        <span className="float-right m-4">
+            <Search value={search} onChange={(e) => setSearch(e.target.value)}/>
         </span>
-        {!isLoading && products.length === 0 ? (
-            <p>-- No Product found, please add a product ...</p>
-        ) : (<span>Hello</span>)}
-        <table class="table-fixed w-full border-seperate">
+        <table className="table-fixed w-full border-seperate">
             <thead className="bg-gray-900 rounded-lg">
                 <tr className="rounded-lg">
                 <th className="border border-gray-600">S/N</th>
@@ -44,20 +41,24 @@ const ProductList = ({products, isLoading}) => {
                 <th className="border border-gray-600">Action</th>
                 </tr>
             </thead>
+            {!isLoading && filteredProducts.length === 0 ? (
+            <tbody className='border-2 border-teal-600 bold'>-- No Product found --</tbody>
+        ) : (
             <tbody>
                 {
                     filteredProducts.map((product, index) => {
                         const { _id, name, category, price, quantity } = product;
+                        console.log("hello", product);
                         return (
                             <tr key={_id}>
-                                <td>{index+1}</td>
-                                <td>{shortenText(name, 16)}</td>
-                                <td>{category}</td>
-                                <td>{"$"}{price}</td>
-                                <td>{quantity}</td>
-                                <td>{"$"}{price*quantity}</td>
-                                <td>
-                                    <span><VscEye size={20}/></span>
+                                <td className="border-2 border-teal-600 bold">{index+1}</td>
+                                <td className="border-2 border-teal-600 bold">{shortenText(name, 16)}</td>
+                                <td className="border-2 border-teal-600 bold">{category}</td>
+                                <td className="border-2 border-teal-600 bold">{"$"}{price}</td>
+                                <td className="border-2 border-teal-600 bold">{quantity}</td>
+                                <td className="border-2 border-teal-600 bold">{"$"}{price*quantity}</td>
+                                <td className="flex flex-row justify-center items-center gap-6 border-2 border-teal-600 bold">
+                                    <span className="m-1"><VscEye size={20}/></span>
                                     <span><VscEdit size={20}/></span>
                                     <span><VscTrash size={20}/></span>
                                 </td>
@@ -65,22 +66,8 @@ const ProductList = ({products, isLoading}) => {
                         )
                     })
                 }
-                <tr>
-                    <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-                    <td>Malcolm Lockyer</td>
-                    <td>1961</td>
-                </tr>
-                <tr>
-                <td>Witchy Woman</td>
-                <td>The Eagles</td>
-                <td>1972</td>
-                </tr>
-                <tr>
-                <td>Shining Star</td>
-                <td>Earth, Wind, and Fire</td>
-                <td>1975</td>
-                </tr>
             </tbody>
+            )}
         </table>
     </div>
   )

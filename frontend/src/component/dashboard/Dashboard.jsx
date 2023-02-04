@@ -4,11 +4,11 @@ import authorization from "../../customHook/authorization";
 import { selectIsLoggedIn } from '../../redux/features/auth/authSlice';
 import { getProducts } from '../../redux/features/product/productSlice';
 import ProductList from '../product/ProductList';
-import {VscEye}from "react-icons/vsc";
+
 
 const Dashboard = () => {
   // authorization("/login");
-  const dispatch = useDispatch;
+  const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const {products, isLoading, isError, message} = useSelector((state) => state.product);
 

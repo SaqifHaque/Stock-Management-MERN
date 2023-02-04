@@ -44,7 +44,7 @@ handleImageChange, saveProduct}) => {
         </div>
         <div className='form-group'>
             <label>Product Price</label>
-            <input className='form-control' type="text" name="email" onChange={handleInputChange} value={product?.price} required/>
+            <input className='form-control' type="text" name="price" onChange={handleInputChange} value={product?.price} required/>
         </div>
         <div className='form-group'>
             <label>Product Quantity</label>
@@ -54,7 +54,7 @@ handleImageChange, saveProduct}) => {
             <label>Product Description</label>
             <ReactQuill theme="snow" value={description} onChange={setDescription} modules={ProductForm.modules} formats={ProductForm.formats}/>
         </div>
-        <button onClick={saveProduct} className='btn-primary'>Add Product</button>
+        <button type="button" onClick={saveProduct} className='btn-primary'>Add Product</button>
     </form>
   )
 }

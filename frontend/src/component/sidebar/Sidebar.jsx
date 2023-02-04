@@ -9,8 +9,8 @@ import { Link } from 'react-router-dom';
 const Sidebar = ({children}) => {
     const [open, setOpen] = useState(false);
     const menus = [
-        { name: "Dashboard", link:"/", icon: RxDashboard},
-        { name: "Add Product", link:"/", icon: MdLibraryAdd},
+        { name: "Dashboard", link:"/dashboard", icon: RxDashboard},
+        { name: "Add Product", link:"/add-product", icon: MdLibraryAdd},
         { name: "Account", link:"/", icon: TfiBarChart},
         { name: "Report Bug", link:"/", icon: VscReport},
     ]

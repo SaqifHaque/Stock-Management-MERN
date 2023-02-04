@@ -31,7 +31,7 @@ const Header = () => {
                 <div className='absolute flex items-center right-4 top-12'>
                     <div className={`duration-500 ${!open && "opacity-0 overflow-hidden"} z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600 mt-`}>
                     <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
-                        <div>{name}</div>
+                        <span className="text-2xl">{name}</span>
                             <div className="font-medium truncate">{email}</div>
                         </div>
                         <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">

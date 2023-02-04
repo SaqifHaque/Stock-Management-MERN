@@ -3,7 +3,7 @@ import loginImg from '../../assets/Stock.png';
 import { loginUser } from '../../api/authAPI';
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from 'react-router-dom';
-import { SET_LOGIN, SET_NAME } from '../../redux/features/auth/authSlice';
+import { SET_LOGIN, SET_NAME, SET_EMAIL } from '../../redux/features/auth/authSlice';
 import Loader from '../../component/loader/Loader';
 import { toast } from 'react-toastify';
 import { validateEmail } from '../../utils/emailValidation';
@@ -21,7 +21,7 @@ const Login = () => {
     const {email, password} = formData;
 
     const handleInputChange = (e) => {
-        const {name, value} = e.target.value;
+        const {name, value} = e.target;
         setFormData({ ...formData, [name]: value });
     };
     
@@ -45,6 +45,7 @@ const Login = () => {
             console.log(data);
             await dispatch(SET_LOGIN(true));
             await dispatch(SET_NAME(data.name));
+            await dispatch(SET_EMAIL(data.email));
             navigate("/dashboard")
             setIsLoading(false);
         } catch (error) {
@@ -74,7 +75,7 @@ const Login = () => {
                     <div className='flex justify-between text-gray-400 py-2'>
                         <p>Forgot Password?</p>
                     </div>
-                    <button className='btn-primary' onClick={login}>Sign In</button>
+                    <button type="button" className='btn-primary' onClick={login}>Sign In</button>
                 </form>
             </div>   
         </div>
