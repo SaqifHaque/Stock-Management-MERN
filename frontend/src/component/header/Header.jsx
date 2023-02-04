@@ -10,7 +10,7 @@ const Header = () => {
     const [open, setOpen] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const name = useSelector(selectName)
+    const name = useSelector(selectName);
     const email = useSelector(selectEmail);
 
     const logout = async () => {

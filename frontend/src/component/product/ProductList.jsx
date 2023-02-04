@@ -3,6 +3,7 @@ import {VscEye, VscEdit, VscTrash}from "react-icons/vsc";
 import { useDispatch, useSelector } from 'react-redux';
 import { FILTER_PRODUCTS, selectFilteredProducts } from '../../redux/features/product/filterSlice';
 import Search from '../search/Search';
+import ReactPaginate from 'react-paginate';
 
 const ProductList = ({products, isLoading}) => {
     const dispatch = useDispatch();
@@ -20,7 +21,31 @@ const ProductList = ({products, isLoading}) => {
     useEffect(() => {
       dispatch(FILTER_PRODUCTS({products, search}))
     }, [products, search, dispatch])
+
+
+
+    // Begin Pagination
+    const [itemOffset, setItemOffset] = useState(0);
+    const [currentItems, setCurrentItems] = useState([]);
+    const [pageCount, setPageCount] = useState(0);
+    const itemsPerPage = 5;
+
+    useEffect(() => {
+        const endOffset = itemOffset + itemsPerPage;
+        setCurrentItems(filteredProducts.slice(itemOffset, endOffset));
+        setPageCount(Math.ceil(filteredProducts.length / itemsPerPage));
+    }, [itemOffset, itemsPerPage])
+
     
+
+    // // Invoke when user click to request another page.
+    const handlePageClick = (event) => {
+        const newOffset = (event.selected * itemsPerPage) % filteredProducts.length;
+        setItemOffset(newOffset);
+    };
+
+    //End Pagination
+
 
 
   return (
@@ -69,6 +94,19 @@ const ProductList = ({products, isLoading}) => {
             </tbody>
             )}
         </table>
+        <ReactPaginate
+            breakLabel="..."
+            nextLabel="Next"
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={2}
+            pageCount={pageCount}
+            previousLabel="Previous"
+            renderOnZeroPageCount={null}
+            containerClassName="flex flex-row justify-center items-center p-5 gap-x-5"
+            pageLinkClassName='border-2 px-1 border-teal-600 hover:bg-teal-700'
+            previousClassName='border-2 px-1 border-teal-600 hover:bg-teal-700'
+            nextLinkClassName='border-2 px-1 border-teal-600 hover:bg-teal-700'
+        />
     </div>
   )
 }

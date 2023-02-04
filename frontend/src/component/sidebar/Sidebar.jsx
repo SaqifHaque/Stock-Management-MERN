@@ -5,9 +5,13 @@ import {MdLibraryAdd} from 'react-icons/md';
 import {TfiBarChart} from 'react-icons/tfi';
 import {VscReport} from 'react-icons/vsc';
 import { Link } from 'react-router-dom';
+import { selectName } from '../../redux/features/auth/authSlice';
+import { useSelector } from 'react-redux';
 
 const Sidebar = ({children}) => {
     const [open, setOpen] = useState(false);
+    const name = useSelector(selectName)
+
     const menus = [
         { name: "Dashboard", link:"/dashboard", icon: RxDashboard},
         { name: "Add Product", link:"/add-product", icon: MdLibraryAdd},
@@ -25,7 +29,7 @@ const Sidebar = ({children}) => {
                         <div className='absolute rounded-full inset-[3px] border-teal-700 border-4 animate-[pulse_2s_ease-in-out_infinite]' /> 
                         <div className={`absolute inset-[6px] rounded-full bg-[url('')] background-size: cover; z-20`} />
                     </div>
-                    <h2 className={`whitespace-pre absolute left-20 top-3 font-medium duration-500 ${!open && "opacity-0 translate-x-28 overflow-hidden"}`}>Saqif Haque</h2>
+                    <h2 className={`whitespace-pre absolute left-20 top-3 font-medium duration-500 ${!open && "opacity-0 translate-x-28 overflow-hidden"}`}>{name}</h2>
                 </div>
                 <div className="mt-4 flex flex-col gap-4 relative">
                     {
