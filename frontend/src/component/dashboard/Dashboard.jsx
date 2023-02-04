@@ -4,6 +4,7 @@ import authorization from "../../customHook/authorization";
 import { selectIsLoggedIn } from '../../redux/features/auth/authSlice';
 import { getProducts } from '../../redux/features/product/productSlice';
 import ProductList from '../product/ProductList';
+import ProductStats from '../product/ProductStats';
 
 
 const Dashboard = () => {
@@ -25,7 +26,7 @@ const Dashboard = () => {
 
   return (
     <div className='h-full w-full bg-gray-800 flex flex-col'>
-        <h1 className="text-gray-400">Dashboard</h1>
+        <ProductStats products={products}/>
         <ProductList products={products} isLoading={isLoading}/>
     </div>
   )
