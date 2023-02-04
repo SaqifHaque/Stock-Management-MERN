@@ -49,9 +49,9 @@ const ProductList = ({products, isLoading}) => {
 
 
   return (
-    <div className='bg-gray-800 text-gray-300'>
-        <span className="float-left text-4xl m-3">Invetory Items</span>
-        <span className="float-right m-4">
+    <div className='bg-gray-800 text-gray-300 overflow-hidden w-11/12 ml-3'>
+        <span className="float-left text-4xl mt-3">Invetory Items</span>
+        <span className="float-right mt-3 mb-3">
             <Search value={search} onChange={(e) => setSearch(e.target.value)}/>
         </span>
         <table className="table-fixed w-full border-seperate">
@@ -82,7 +82,7 @@ const ProductList = ({products, isLoading}) => {
                                 <td className="border-2 border-teal-600 bold">{"$"}{price}</td>
                                 <td className="border-2 border-teal-600 bold">{quantity}</td>
                                 <td className="border-2 border-teal-600 bold">{"$"}{price*quantity}</td>
-                                <td className="flex flex-row justify-center items-center gap-6 border-2 border-teal-600 bold">
+                                <td className="flex flex-row justify-center items-center gap-4 border-2 border-teal-600 bold">
                                     <span className="m-1"><VscEye size={20}/></span>
                                     <span><VscEdit size={20}/></span>
                                     <span><VscTrash size={20}/></span>

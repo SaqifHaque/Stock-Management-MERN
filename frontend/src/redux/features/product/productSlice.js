@@ -62,6 +62,31 @@ const authSlice  = createSlice({
                 return a+b;
             }, 0)
             state.totalStoreValue = totalValue;
+        },
+        CALC_OUT_OF_STOCK(state, action) {
+            const products = action.payload;
+            const array = [];
+            products.map((item) => {
+                const {quantity} = item;
+                return array.push(quantity);
+            })
+            let count = 0;
+            array.forEach((number) => {
+                if (number === 0 || number === "0") {
+                    count += 1;
+                }
+            })
+            state.outOfStock = count;
+        },
+        CALC_CATEGORY(state, action) {
+            const products = action.payload;
+            const array = [];
+            products.map((item) => {
+                const { category } = item;
+                return array.push(category);
+            })
+            const uniqueCategory = [...new Set(array)];
+            state.category = uniqueCategory;
         }
     },
     extraReducers: (builder) => {
@@ -101,11 +126,16 @@ const authSlice  = createSlice({
     }
 })
 
-export const {CALC_STORE_VALUE} = authSlice.actions;
+export const {CALC_STORE_VALUE, CALC_OUT_OF_STOCK, CALC_CATEGORY} = authSlice.actions;
 
 export const selectIsLoading = (state) => state.product.isLoading;
 
 export const selectTotalStoreValue = (state) => state.product.totalStoreValue;
+
+export const selectOutOfStock = (state) => state.product.outOfStock;
+
+export const selectCategory = (state) => state.product.category;
+
 
 
 export default authSlice.reducer;

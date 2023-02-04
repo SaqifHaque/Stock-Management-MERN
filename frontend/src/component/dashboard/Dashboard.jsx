@@ -25,7 +25,7 @@ const Dashboard = () => {
   
 
   return (
-    <div className='h-full w-full bg-gray-800 flex flex-col'>
+    <div className='h-full w-full bg-gray-800 flex flex-col overflow-x-auto gap-y-6'>
         <ProductStats products={products}/>
         <ProductList products={products} isLoading={isLoading}/>
     </div>
