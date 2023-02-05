@@ -6,6 +6,7 @@ import Search from '../search/Search';
 import ReactPaginate from 'react-paginate';
 import { deleteProduct, getProducts } from '../../redux/features/product/productSlice';
 import { confirmAlert } from 'react-confirm-alert'; 
+import { Link } from 'react-router-dom';
 
 
 const ProductList = ({products, isLoading}) => {
@@ -104,7 +105,11 @@ const ProductList = ({products, isLoading}) => {
                             <td className="border-2 border-teal-600 bold">{quantity}</td>
                             <td className="border-2 border-teal-600 bold">{"$"}{price*quantity}</td>
                             <td className="flex flex-row justify-center items-center gap-4 border-2 border-teal-600 bold">
-                                <span className="m-1"><VscEye size={20}/></span>
+                                <span className="m-1">
+                                    <Link to={`/product-details/${_id}`}>
+                                        <VscEye size={20}/>
+                                    </Link>
+                                </span>
                                 <span><VscEdit size={20}/></span>
                                 <span onClick={() =>confirmDelete(_id)}><VscTrash size={20}/></span>
                             </td>
