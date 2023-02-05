@@ -10,8 +10,13 @@ const createProduct = async (formData) => {
     return response.data;
 }
 
-const getProducts = async (formData) => {
+const getProducts = async () => {
     const response = await axios.get(API_URL);
+    return response.data;
+}
+
+const getProduct = async (id) => {
+    const response = await axios.get(API_URL + id);
     return response.data;
 }
 
@@ -24,6 +29,7 @@ const deleteProduct = async (id) => {
 const productAPI = {
     createProduct,
     getProducts,
+    getProduct,
     deleteProduct
 }
 
