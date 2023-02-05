@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FILTER_PRODUCTS, selectFilteredProducts } from '../../redux/features/product/filterSlice';
 import Search from '../search/Search';
 import ReactPaginate from 'react-paginate';
+import { deleteProduct, getProducts } from '../../redux/features/product/productSlice';
+import { confirmAlert } from 'react-confirm-alert'; 
+
 
 const ProductList = ({products, isLoading}) => {
     const dispatch = useDispatch();
@@ -37,14 +40,34 @@ const ProductList = ({products, isLoading}) => {
     }, [itemOffset, itemsPerPage])
 
     
-
-    // // Invoke when user click to request another page.
     const handlePageClick = (event) => {
         const newOffset = (event.selected * itemsPerPage) % filteredProducts.length;
         setItemOffset(newOffset);
     };
 
     //End Pagination
+
+    const delProduct = async (id) => {
+        await dispatch(deleteProduct(id));
+        await dispatch(getProducts());
+    }
+
+
+    const confirmDelete = (id) => {
+        confirmAlert({
+            title: 'Delete Product',
+            message: 'Are you sure to do this.',
+            buttons: [
+              {
+                label: 'Delete',
+                onClick: () => delProduct(id)
+              },
+              {
+                label: 'Cancel',
+              }
+            ]
+          });
+    }
 
 
 
@@ -66,33 +89,30 @@ const ProductList = ({products, isLoading}) => {
                 <th className="border border-gray-600">Action</th>
                 </tr>
             </thead>
-            {!isLoading && filteredProducts.length === 0 ? (
-            <tbody className='border-2 border-teal-600 bold'>-- No Product found --</tbody>
-        ) : (
             <tbody>
-                {
-                    filteredProducts.map((product, index) => {
-                        const { _id, name, category, price, quantity } = product;
-                        console.log("hello", product);
-                        return (
-                            <tr key={_id}>
-                                <td className="border-2 border-teal-600 bold">{index+1}</td>
-                                <td className="border-2 border-teal-600 bold">{shortenText(name, 16)}</td>
-                                <td className="border-2 border-teal-600 bold">{category}</td>
-                                <td className="border-2 border-teal-600 bold">{"$"}{price}</td>
-                                <td className="border-2 border-teal-600 bold">{quantity}</td>
-                                <td className="border-2 border-teal-600 bold">{"$"}{price*quantity}</td>
-                                <td className="flex flex-row justify-center items-center gap-4 border-2 border-teal-600 bold">
-                                    <span className="m-1"><VscEye size={20}/></span>
-                                    <span><VscEdit size={20}/></span>
-                                    <span><VscTrash size={20}/></span>
-                                </td>
-                            </tr>
-                        )
-                    })
-                }
-            </tbody>
+            {!isLoading && filteredProducts.length === 0 ? (
+            <tr className='border-2 border-teal-600 bold'>-- No Product found --</tr>
+        ) : (
+                filteredProducts.map((product, index) => {
+                    const { _id, name, category, price, quantity } = product;
+                    return (
+                        <tr key={_id}>
+                            <td className="border-2 border-teal-600 bold">{index+1}</td>
+                            <td className="border-2 border-teal-600 bold">{shortenText(name, 16)}</td>
+                            <td className="border-2 border-teal-600 bold">{category}</td>
+                            <td className="border-2 border-teal-600 bold">{"$"}{price}</td>
+                            <td className="border-2 border-teal-600 bold">{quantity}</td>
+                            <td className="border-2 border-teal-600 bold">{"$"}{price*quantity}</td>
+                            <td className="flex flex-row justify-center items-center gap-4 border-2 border-teal-600 bold">
+                                <span className="m-1"><VscEye size={20}/></span>
+                                <span><VscEdit size={20}/></span>
+                                <span onClick={() =>confirmDelete(_id)}><VscTrash size={20}/></span>
+                            </td>
+                        </tr>
+                    )
+                })
             )}
+            </tbody>
         </table>
         <ReactPaginate
             breakLabel="..."

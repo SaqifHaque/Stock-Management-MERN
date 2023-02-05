@@ -8,6 +8,7 @@ import Layout from './component/layout/Layout';
 import Dashboard from './component/dashboard/Dashboard';
 import axios from 'axios';
 import { ToastContainer  } from 'react-toastify';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
