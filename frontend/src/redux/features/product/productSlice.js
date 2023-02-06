@@ -62,6 +62,22 @@ export const getProduct = createAsyncThunk(
     }
 )
 
+export const updateProduct = createAsyncThunk(
+    "products/updateProduct",
+    async (id, formData, thunkAPI) => {
+        try {
+            return await productAPI.updateProduct(id, formData);
+        } catch(error) {
+            const message = (
+                error.response && error.response.data && error.response.data.message
+            ) || error.message || error.toString();
+
+            console.log(message);
+            return thunkAPI.rejectWithValue(message);
+        }   
+    }
+)
+
 export const deleteProduct = createAsyncThunk(
     "products/delete",
     async (id, thunkAPI) => {
@@ -165,6 +181,21 @@ const authSlice  = createSlice({
             state.product = action.payload;
         });
         builder.addCase(getProduct.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = false;
+            state.message = action.payload;
+            toast.error(action.payload);
+        });
+        builder.addCase(updateProduct.pending, (state) => {
+            state.isLoading = true;
+        });
+        builder.addCase(updateProduct.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.isError=false;
+            toast.success("Product Updated Successfully")
+        });
+        builder.addCase(updateProduct.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = false;
             state.message = action.payload;
