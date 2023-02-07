@@ -16,6 +16,7 @@ import { getLoginStatus } from './api/authAPI';
 import { SET_LOGIN } from './redux/features/auth/authSlice';
 import AddProduct from './pages/product/AddProduct';
 import ProductDetails from './pages/product/ProductDetails';
+import EditProduct from './pages/product/EditProduct';
 
 axios.defaults.withCredentials = true;
 
@@ -47,6 +48,11 @@ function App() {
           <Route path='/product-details/:id' element={
             <Layout>
               <ProductDetails/>
+            </Layout> 
+          } />
+          <Route path='/edit-product/:id' element={
+            <Layout>
+              <EditProduct/>
             </Layout> 
           } />
         <Route path='/login' element={<Login/>}/>
