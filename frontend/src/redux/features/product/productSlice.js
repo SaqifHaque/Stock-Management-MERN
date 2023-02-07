@@ -64,7 +64,8 @@ export const getProduct = createAsyncThunk(
 
 export const updateProduct = createAsyncThunk(
     "products/updateProduct",
-    async (id, formData, thunkAPI) => {
+    async (productData, thunkAPI) => {
+        const {id, formData} = productData;
         try {
             return await productAPI.updateProduct(id, formData);
         } catch(error) {
@@ -193,6 +194,7 @@ const authSlice  = createSlice({
             state.isLoading = false;
             state.isSuccess = true;
             state.isError=false;
+            console.log(action.payload);
             toast.success("Product Updated Successfully")
         });
         builder.addCase(updateProduct.rejected, (state, action) => {
@@ -222,6 +224,8 @@ const authSlice  = createSlice({
 export const {CALC_STORE_VALUE, CALC_OUT_OF_STOCK, CALC_CATEGORY} = authSlice.actions;
 
 export const selectIsLoading = (state) => state.product.isLoading;
+
+export const selectProduct = (state) => state.product.product;
 
 export const selectTotalStoreValue = (state) => state.product.totalStoreValue;
 
