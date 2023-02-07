@@ -92,7 +92,7 @@ const ProductList = ({products, isLoading}) => {
             </thead>
             <tbody>
             {!isLoading && filteredProducts.length === 0 ? (
-            <tr className='border-2 border-teal-600 bold'>-- No Product found --</tr>
+            <tr className='border-2 border-teal-600 bold'><td>-- No Product found -- </td></tr>
         ) : (
                 filteredProducts.map((product, index) => {
                     const { _id, name, category, price, quantity } = product;
@@ -110,7 +110,11 @@ const ProductList = ({products, isLoading}) => {
                                         <VscEye size={20}/>
                                     </Link>
                                 </span>
-                                <span><VscEdit size={20}/></span>
+                                <span>
+                                    <Link to={`/edit-product/${_id}`}>
+                                        <VscEdit size={20}/>
+                                    </Link>
+                                </span>
                                 <span onClick={() =>confirmDelete(_id)}><VscTrash size={20}/></span>
                             </td>
                         </tr>

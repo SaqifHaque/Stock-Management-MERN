@@ -52,7 +52,6 @@ const AddProduct = () => {
         formData.append("description", description);
         formData.append("image", productImage);
 
-        console.log(formData);
 
         await dispatch(createProduct(formData))
 
@@ -73,6 +72,8 @@ const AddProduct = () => {
                 handleInputChange={handleInputChange}
                 handleImageChange={handleImageChange}
                 saveProduct={saveProduct}
+                title="Add Product"
+                buttonText="Add Product"
                 />
             </div>
     </div>

@@ -16,7 +16,7 @@ const createProduct = asyncHandler (async (req, res) => {
     let fileData = {};
     if(req.file) {
         // save Image to cloudinary
-        let uploadFile;
+        let uploadedFile;
         try{
             uploadedFile = await cloudinary.uploader.upload(req.file.path, {folder: "StockM", resource_type: "image"})
         } catch {
@@ -87,7 +87,7 @@ const deleteProduct = asyncHandler (async (req, res) => {
 // Update Product
 const updateProduct = asyncHandler(async (req, res) => {
     const { name, category, quantity, price, description  } = req.body;
-    const {id} = req.params;
+    const { id } = req.params;
 
     const product = await Product.findById(id);
 
@@ -104,7 +104,7 @@ const updateProduct = asyncHandler(async (req, res) => {
     let fileData = {};
     if(req.file) {
         // save Image to cloudinary
-        let uploadFile;
+        let uploadedFile;
         try{
             uploadedFile = await cloudinary.uploader.upload(req.file.path, {folder: "StockM", resource_type: "image"})
         } catch {
@@ -135,6 +135,7 @@ const updateProduct = asyncHandler(async (req, res) => {
             runValidators:true
         }
     )
+
     res.status(200).json(updatedProduct)
 }) 
 

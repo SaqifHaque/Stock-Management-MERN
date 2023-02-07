@@ -3,10 +3,10 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
 const ProductForm = ({product, productImage, imagePreview, description, setDescription, handleInputChange,
-handleImageChange, saveProduct}) => {
+handleImageChange, saveProduct, title, buttonText}) => {
   return (
     <form className='max-w-[1000px] w-full mx-auto bg-gray-900 p-8 m-5 rounded-lg'>
-        <h2 className='text-4xl dark:text-white font-bold text-center'>Add Product</h2>
+        <h2 className='text-4xl dark:text-white font-bold text-center'>{title}</h2>
         <div className="form-group">
         <label>Product Image</label>
             <label
@@ -54,7 +54,7 @@ handleImageChange, saveProduct}) => {
             <label>Product Description</label>
             <ReactQuill theme="snow" value={description} onChange={setDescription} modules={ProductForm.modules} formats={ProductForm.formats}/>
         </div>
-        <button type="button" onClick={saveProduct} className='btn-primary'>Add Product</button>
+        <button type="button" onClick={saveProduct} className='btn-primary'>{buttonText}</button>
     </form>
   )
 }
