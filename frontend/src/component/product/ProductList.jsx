@@ -101,9 +101,9 @@ const ProductList = ({products, isLoading}) => {
                             <td className="border-2 border-teal-600 bold">{index+1}</td>
                             <td className="border-2 border-teal-600 bold">{shortenText(name, 16)}</td>
                             <td className="border-2 border-teal-600 bold">{category}</td>
-                            <td className="border-2 border-teal-600 bold">{"$"}{price}</td>
+                            <td className="border-2 border-teal-600 bold">{"$"}{(price*1).toLocaleString('en-US')}</td>
                             <td className="border-2 border-teal-600 bold">{quantity}</td>
-                            <td className="border-2 border-teal-600 bold">{"$"}{price*quantity}</td>
+                            <td className="border-2 border-teal-600 bold">{"$"}{(price*quantity).toLocaleString('en-US')}</td>
                             <td className="flex flex-row justify-center items-center gap-4 border-2 border-teal-600 bold">
                                 <span className="m-1">
                                     <Link to={`/product-details/${_id}`}>

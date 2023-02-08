@@ -5,7 +5,7 @@ import { validateEmail } from '../../utils/emailValidation';
 import { registerUser } from '../../api/authAPI';
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from 'react-router-dom';
-import { SET_LOGIN, SET_NAME } from '../../redux/features/auth/authSlice';
+import { SET_EMAIL, SET_LOGIN, SET_NAME, SET_PHOTO } from '../../redux/features/auth/authSlice';
 import Loader from '../../component/loader/Loader';
 
 
@@ -60,6 +60,8 @@ const Register = () => {
             console.log(data);
             await dispatch(SET_LOGIN(true));
             await dispatch(SET_NAME(data.name));
+            await dispatch(SET_EMAIL(data.email));
+            await dispatch(SET_PHOTO(data.photo));
             navigate("/dashboard")
             setIsLoading(false);
         } catch(error) {
@@ -112,7 +114,7 @@ const Register = () => {
                         <label>Bio</label>
                         <textarea className='form-control' type="password" name="bio" onChange={handleInputChange} value={bio}/>
                     </div>
-                    <div className="form-group">
+                    {/* <div className="form-group">
                         <label
                             className="form-file-label">
                             <span className="flex items-center space-x-2">
@@ -128,7 +130,7 @@ const Register = () => {
                             </span>
                             <input type="file" name="photo" className="hidden" value={photo} onChange={handleInputChange}/>
                         </label>
-                    </div>
+                    </div> */}
                     <button className='btn-primary' onClick={register}>Register</button>
                 </form>
             </div>   

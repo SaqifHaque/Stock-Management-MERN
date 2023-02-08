@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import loginImg from '../../assets/Stock.png';
 import { loginUser } from '../../api/authAPI';
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from 'react-router-dom';
-import { SET_LOGIN, SET_NAME, SET_EMAIL } from '../../redux/features/auth/authSlice';
+import { useNavigate } from 'react-router-dom';
+import { SET_LOGIN, SET_NAME, SET_EMAIL, SET_PHOTO } from '../../redux/features/auth/authSlice';
 import Loader from '../../component/loader/Loader';
 import { toast } from 'react-toastify';
 import { validateEmail } from '../../utils/emailValidation';
@@ -46,6 +46,7 @@ const Login = () => {
             await dispatch(SET_LOGIN(true));
             await dispatch(SET_NAME(data.name));
             await dispatch(SET_EMAIL(data.email));
+            await dispatch(SET_PHOTO(data.photo));
             navigate("/dashboard")
             setIsLoading(false);
         } catch (error) {
