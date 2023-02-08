@@ -69,7 +69,7 @@ const ProductDetails = () => {
                     </p>
                     <p className="text-lg space-x-2 py-3">
                         <span className="bg-teal-600 rounded-lg px-2 dark:text-white">Price:</span>
-                        <span>{'$'}{product?.price}</span>
+                        <span>{'$'}{(product?.price*1).toLocaleString('en-US')}</span>
                     </p>
                     <p className="text-lg space-x-2 py-3">
                         <span className="bg-teal-600 rounded-lg px-2 dark:text-white">Quantity in stock:</span>
@@ -77,7 +77,7 @@ const ProductDetails = () => {
                     </p>
                     <p className="text-lg space-x-2 py-3">
                         <span className="bg-teal-600 rounded-lg px-2 dark:text-white">Total value in stock:</span>
-                        <span>{'$'}{product?.quantity*product?.price}</span>
+                        <span>{'$'}{(product?.quantity*product?.price).toLocaleString('en-US')}</span>
                     </p>
                     <hr/>
                     <div className='form-group pb-5 text-lg text-gray-300'>
