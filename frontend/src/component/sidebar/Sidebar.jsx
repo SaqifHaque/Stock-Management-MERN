@@ -5,12 +5,13 @@ import {MdLibraryAdd} from 'react-icons/md';
 import {TfiBarChart} from 'react-icons/tfi';
 import {VscReport} from 'react-icons/vsc';
 import { Link } from 'react-router-dom';
-import { selectName } from '../../redux/features/auth/authSlice';
+import { selectName, selectPhoto } from '../../redux/features/auth/authSlice';
 import { useSelector } from 'react-redux';
 
 const Sidebar = ({children}) => {
     const [open, setOpen] = useState(false);
     const name = useSelector(selectName)
+    const photo = useSelector(selectPhoto);
 
     const menus = [
         { name: "Dashboard", link:"/dashboard", icon: RxDashboard},
@@ -27,7 +28,7 @@ const Sidebar = ({children}) => {
                     <div className={`${open ? "h-14 w-14" : "h-9 w-9"} relative rounded-full`}>
                         <div className='absolute rounded-full inset-0 border-teal-400 border-[3px] transition delay-1000 animate-pulse' />
                         <div className='absolute rounded-full inset-[3px] border-teal-700 border-4 animate-[pulse_2s_ease-in-out_infinite]' /> 
-                        <div className={`absolute inset-[6px] rounded-full bg-[url('')] background-size: cover; z-20`} />
+                        <img className="absolute h-12 inset-[4px]" src={photo} alt=""/>
                     </div>
                     <h2 className={`whitespace-pre absolute left-20 top-3 font-medium duration-500 ${!open && "opacity-0 translate-x-28 overflow-hidden"}`}>{name}</h2>
                 </div>
