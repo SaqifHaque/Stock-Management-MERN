@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import ProductForm from '../../component/product/ProductForm';
 import { createProduct } from '../../redux/features/product/productSlice';
 import Loader from '../../component/loader/Loader';
+import Authorization from '../../customHook/authorization';
 
 const dummy = {
     name: "",
@@ -15,6 +16,7 @@ const dummy = {
 }
 
 const AddProduct = () => {
+    Authorization('/login');
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [product, setProduct] = useState(dummy);

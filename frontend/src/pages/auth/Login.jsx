@@ -7,6 +7,7 @@ import { SET_LOGIN, SET_NAME, SET_EMAIL, SET_PHOTO } from '../../redux/features/
 import Loader from '../../component/loader/Loader';
 import { toast } from 'react-toastify';
 import { validateEmail } from '../../utils/emailValidation';
+import Authorization from '../../customHook/authorization';
 
 const dummy = {
     email: "",
@@ -14,6 +15,7 @@ const dummy = {
 }
 
 const Login = () => {
+    Authorization('');
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);

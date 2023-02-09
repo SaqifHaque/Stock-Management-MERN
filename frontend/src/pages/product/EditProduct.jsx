@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom'
 import Loader from '../../component/loader/Loader';
 import ProductForm from '../../component/product/ProductForm';
+import Authorization from '../../customHook/authorization';
 import { getProduct, getProducts, selectIsLoading, selectProduct, updateProduct } from '../../redux/features/product/productSlice';
 
 
 const EditProduct = () => {
+    Authorization('/login');
     const { id } = useParams();
 
     const dispatch = useDispatch();

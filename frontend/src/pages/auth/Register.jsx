@@ -4,9 +4,10 @@ import { toast } from 'react-toastify';
 import { validateEmail } from '../../utils/emailValidation';
 import { registerUser } from '../../api/authAPI';
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { SET_EMAIL, SET_LOGIN, SET_NAME, SET_PHOTO } from '../../redux/features/auth/authSlice';
 import Loader from '../../component/loader/Loader';
+import Authorization from '../../customHook/authorization';
 
 
 const dummy = {
@@ -21,6 +22,7 @@ const dummy = {
 }
 
 const Register = () => {
+    Authorization('');
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);

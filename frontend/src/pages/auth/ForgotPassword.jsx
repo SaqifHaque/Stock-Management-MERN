@@ -3,8 +3,10 @@ import { toast } from 'react-toastify';
 import loginImg from '../../assets/Stock.png';
 import {validateEmail} from '../../utils/emailValidation';
 import {forgotPassword} from '../../api/authAPI';
+import Authorization from '../../customHook/authorization';
 
 const ForgotPassword = () => {
+    Authorization('');
     const [email, setEmail] = useState("");
 
     const forgot = async () => {

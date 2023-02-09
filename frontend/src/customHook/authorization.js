@@ -18,6 +18,9 @@ const Authorization = (path) => {
                 toast.info("Session expired, Please login to continue");
                 navigate(path)
                 return
+            } else {
+                navigate('/dashboard');
+                return
             }
         }
         redirectLoggedOutUser();

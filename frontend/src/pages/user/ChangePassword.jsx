@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { toast } from 'react-toastify';
 import { changePassword } from '../../api/userAPI';
 import Loader from '../../component/loader/Loader';
+import Authorization from '../../customHook/authorization';
 
 const dummy = {
     oldPassword: "",
@@ -10,6 +11,7 @@ const dummy = {
 }
 
 const ChangePassword = () => {
+    Authorization('login');
     const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState(dummy);
 

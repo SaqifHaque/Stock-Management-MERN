@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import authorization from "../../customHook/authorization";
+import Authorization from '../../customHook/authorization';
 import { selectIsLoggedIn } from '../../redux/features/auth/authSlice';
 import { getProducts } from '../../redux/features/product/productSlice';
 import ProductList from '../product/ProductList';
@@ -8,7 +8,7 @@ import ProductStats from '../product/ProductStats';
 
 
 const Dashboard = () => {
-  // authorization("/login");
+  Authorization('/login');
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const {products, isLoading, isError, message} = useSelector((state) => state.product);

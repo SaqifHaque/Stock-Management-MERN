@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import loginImg from '../../assets/Stock.png';
 import { resetPassword } from '../../api/authAPI';
 import { useParams } from 'react-router-dom';
+import Authorization from '../../customHook/authorization';
 
 
 const dummy = {
@@ -11,6 +12,7 @@ const dummy = {
 }
 
 const ResetPassword = () => {
+    Authorization('');
     const [formData, setFormData] = useState(dummy);
     const { password, confirmPassword } = formData;
     const {resetToken} = useParams();
