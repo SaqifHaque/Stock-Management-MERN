@@ -29,3 +29,30 @@ export const updateUser = async (formData) => {
         toast.error(message);
     }
 }
+
+export const changePassword = async (formData) => {
+    try {
+        const response = await axios.patch(API_URL + 'change-password', formData);
+        return response.data;
+    } catch (error) {
+        const message = (
+            error.response && error.response.data && error.response.data.message
+        ) || error.message || error.toString();
+
+        toast.error(message);
+    }
+}
+
+export const contactUs = async (formData) => {
+    try {
+        const response = await axios.post(`${BACKEND_URL}/api/contact-us`, formData);
+        return response.data;
+    } catch (error) {
+        const message = (
+            error.response && error.response.data && error.response.data.message
+        ) || error.message || error.toString();
+
+        toast.error(message);
+    }
+}
+

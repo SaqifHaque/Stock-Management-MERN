@@ -19,6 +19,8 @@ import ProductDetails from './pages/product/ProductDetails';
 import EditProduct from './pages/product/EditProduct';
 import Profile from './pages/user/Profile';
 import EditProfile from './pages/user/EditProfile';
+import ChangePassword from './pages/user/ChangePassword';
+import ContactUs from './pages/user/ContactUs';
 
 axios.defaults.withCredentials = true;
 
@@ -65,6 +67,16 @@ function App() {
           <Route path='/edit-profile' element={
             <Layout>
               <EditProfile/>
+            </Layout> 
+          } />
+          <Route path='/change-password' element={
+            <Layout>
+              <ChangePassword/>
+            </Layout> 
+          } />
+          <Route path='/send-report' element={
+            <Layout>
+              <ContactUs/>
             </Layout> 
           } />
         <Route path='/login' element={<Login/>}/>
