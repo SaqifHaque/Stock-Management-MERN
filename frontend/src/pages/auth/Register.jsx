@@ -112,7 +112,7 @@ const Register = () => {
                     </div>
                     <div className='form-group'>
                         <label>Bio</label>
-                        <textarea className='form-control' type="password" name="bio" onChange={handleInputChange} value={bio}/>
+                        <textarea className='form-control' type="text" name="bio" onChange={handleInputChange} value={bio}/>
                     </div>
                     {/* <div className="form-group">
                         <label
