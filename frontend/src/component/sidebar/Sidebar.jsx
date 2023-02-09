@@ -16,7 +16,7 @@ const Sidebar = ({children}) => {
     const menus = [
         { name: "Dashboard", link:"/dashboard", icon: RxDashboard},
         { name: "Add Product", link:"/add-product", icon: MdLibraryAdd},
-        { name: "Account", link:"/", icon: TfiBarChart},
+        { name: "Account", link:"/user-profile", icon: TfiBarChart},
         { name: "Report Bug", link:"/", icon: VscReport},
     ]
     return (
@@ -28,7 +28,7 @@ const Sidebar = ({children}) => {
                     <div className={`${open ? "h-14 w-14" : "h-9 w-9"} relative rounded-full`}>
                         <div className='absolute rounded-full inset-0 border-teal-400 border-[3px] transition delay-1000 animate-pulse' />
                         <div className='absolute rounded-full inset-[3px] border-teal-700 border-4 animate-[pulse_2s_ease-in-out_infinite]' /> 
-                        <img className="absolute h-12 inset-[4px]" src={photo} alt=""/>
+                        <img className={`${open ? "absolute h-12 inset-[4px]" : "absolute h-7 inset-[4px]"} rounded-full`} src={photo} alt=""/>
                     </div>
                     <h2 className={`whitespace-pre absolute left-20 top-3 font-medium duration-500 ${!open && "opacity-0 translate-x-28 overflow-hidden"}`}>{name}</h2>
                 </div>

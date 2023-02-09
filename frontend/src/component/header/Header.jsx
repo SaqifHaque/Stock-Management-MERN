@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {MdAccountBalance} from 'react-icons/md';
 import {VscSettingsGear} from 'react-icons/vsc';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { logoutUser } from '../../api/authAPI';
 import { SET_LOGIN, selectName, selectEmail } from '../../redux/features/auth/authSlice';
 
@@ -36,7 +36,19 @@ const Header = () => {
                         </div>
                         <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
                             <li>
-                                <span className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit Profile</span>
+                                <Link to={`/user-profile`}>
+                                    <span className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile Settings</span>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to={`/change-password`}>
+                                    <span className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Change Password</span>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to={`/edit-profile`}>
+                                    <span className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit Profile</span>
+                                </Link>
                             </li>
                             <li>
                                 <span onClick={logout} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Logout</span>
